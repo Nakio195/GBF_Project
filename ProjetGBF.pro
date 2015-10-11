@@ -13,12 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    GBF_IHM.cpp \
-    GBF_Signal.cpp
+    IHM\GBF_IHM.cpp \
+    Signaux\GBF_Signal.cpp
 
 HEADERS  += \
-    GBF_IHM.h \
-    GBF_Signal.h
+    IHM\GBF_IHM.h \
+    Signaux\GBF_Signal.h
 
 FORMS    += \
-    GBF_IHM.ui
+    IHM\GBF_IHM.ui
