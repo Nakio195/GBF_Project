@@ -12,9 +12,11 @@ TARGET = ProjetGBF
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        GBF_FaceAvant.cpp
+SOURCES += main.cpp \
+    GBF_IHM.cpp
 
-HEADERS  += GBF_FaceAvant.h
+HEADERS  += \
+    GBF_IHM.h
 
-FORMS    += GBF_FaceAvant.ui
+FORMS    += \
+    GBF_IHM.ui

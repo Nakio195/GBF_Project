@@ -1,10 +1,10 @@
-#include "GBF_FaceAvant.h"
+#include "GBF_IHM.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    GBF_FaceAvant w;
+    GBF_IHM w;
     w.setWindowTitle(QString("Projet GBF"));
     w.show();
 

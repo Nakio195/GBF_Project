@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GBF_FaceAvant</class>
- <widget class="QMainWindow" name="GBF_FaceAvant">
+ <class>GBF_IHM</class>
+ <widget class="QMainWindow" name="GBF_IHM">
   <property name="geometry">
    <rect>
     <x>0</x>
