@@ -1,4 +1,4 @@
-#include "GBF_IHM.h"
+#include "IHM\GBF_IHM.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

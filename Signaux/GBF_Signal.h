@@ -18,14 +18,22 @@ class GBF_Signal
         void setAmplitude (double Amplitude = 0.5);
         double Amplitude () const;
 
-        virtual void ComputeWaveform (int Resolution, int SamplingFrequency) = 0;
-        const std::vector<double> Waveform ();
+        virtual void setDutyCycle(double DutyCycle) = 0;
+        virtual double DutyCycle() const = 0;
 
-    private:
-        double m_Frequency;      /// Fréquence en Hz du signal
+        virtual void ComputeWaveform (int Resolution, int SamplingFrequency) = 0;
+        const std::vector<int> Waveform();
+
+        enum SignalType {SQUARE = 0, SINUS, COSINUS, TRIANGLE};
+        unsigned int Type();
+
+    protected:
+        double m_Frequency;               /// Fréquence en Hz du signal
         double m_Offset;                  /// Composante continue du signal
         double m_Amplitude;               /// Amplitude crête à crête
-        std::vector<double> m_Waveform;   /// Contient les points calculés du signal
+        std::vector<int> m_Waveform;   /// Contient les points calculés du signal
+
+        unsigned int m_Type;                           /// Type du signal selon l'enum SignalType
 };
 
 

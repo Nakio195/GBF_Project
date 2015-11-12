@@ -63,7 +63,12 @@ double GBF_Signal::Amplitude() const
     return m_Amplitude;
 }
 
-const std::vector<double> GBF_Signal::Waveform ()
+const std::vector<int> GBF_Signal::Waveform ()
 {
     return m_Waveform;
+}
+
+unsigned int GBF_Signal::Type()
+{
+    return m_Type;
 }
