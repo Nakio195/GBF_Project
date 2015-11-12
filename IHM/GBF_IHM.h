@@ -25,6 +25,7 @@ class GBF_IHM : public QMainWindow
         void setDutyCycle (int Duty);
         void setOffset (int Offset);
         void setAmplitude (int Amplitude);
+        void resizeEvent(QResizeEvent *event);
 
     private:
         Ui::GBF_IHM *ui;

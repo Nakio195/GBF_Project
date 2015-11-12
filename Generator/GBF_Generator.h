@@ -34,6 +34,8 @@ class GBF_Generator
 
         void DisplayGrid();
 
+        void ScopeRefresh();            /// Rafraichit et redessine la zone de dessin
+
     private:
         std::string m_Name;                 /// Nom du générateur
         GBF_Signal* m_CurrentSignal;        /// Pointeur sur un signal courant créer dynamiquement

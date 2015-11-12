@@ -50,26 +50,23 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2" colspan="2">
-        <widget class="QDial" name="dial_4">
-         <property name="maximum">
-          <number>100</number>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="num_Offset">
+         <property name="suffix">
+          <string>  %</string>
          </property>
-         <property name="notchesVisible">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="2">
-        <widget class="QDial" name="dial_3">
          <property name="minimum">
           <number>-100</number>
          </property>
          <property name="maximum">
           <number>100</number>
          </property>
-         <property name="notchTarget">
-          <double>7.400000000000000</double>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QDial" name="rot_DutyCycle">
+         <property name="maximum">
+          <number>100</number>
          </property>
          <property name="notchesVisible">
           <bool>true</bool>
@@ -77,7 +74,7 @@
         </widget>
        </item>
        <item row="1" column="2" colspan="2">
-        <widget class="QDial" name="dial_2">
+        <widget class="QDial" name="rot_Amplitude">
          <property name="maximum">
           <number>100</number>
          </property>
@@ -110,7 +107,7 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QDial" name="dial">
+        <widget class="QDial" name="rot_Frequency">
          <property name="maximum">
           <number>22050</number>
          </property>
@@ -154,19 +151,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="num_Offset">
-         <property name="suffix">
-          <string>  %</string>
-         </property>
-         <property name="minimum">
-          <number>-100</number>
-         </property>
-         <property name="maximum">
-          <number>100</number>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="3">
         <widget class="QSpinBox" name="num_DutyCycle">
          <property name="suffix">
@@ -174,6 +158,22 @@
          </property>
          <property name="maximum">
           <number>100</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QDial" name="rot_Offset">
+         <property name="minimum">
+          <number>-100</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="notchTarget">
+          <double>7.400000000000000</double>
+         </property>
+         <property name="notchesVisible">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -219,6 +219,9 @@
       </property>
       <property name="renderHints">
        <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+      </property>
+      <property name="transformationAnchor">
+       <enum>QGraphicsView::NoAnchor</enum>
       </property>
      </widget>
     </item>
@@ -277,7 +280,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>dial</sender>
+   <sender>rot_Frequency</sender>
    <signal>valueChanged(int)</signal>
    <receiver>num_Frequency</receiver>
    <slot>setValue(int)</slot>
@@ -293,7 +296,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial_3</sender>
+   <sender>rot_Offset</sender>
    <signal>valueChanged(int)</signal>
    <receiver>num_Offset</receiver>
    <slot>setValue(int)</slot>
@@ -309,7 +312,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial_4</sender>
+   <sender>rot_DutyCycle</sender>
    <signal>valueChanged(int)</signal>
    <receiver>num_DutyCycle</receiver>
    <slot>setValue(int)</slot>
@@ -327,7 +330,7 @@
   <connection>
    <sender>num_Frequency</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>dial</receiver>
+   <receiver>rot_Frequency</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -343,7 +346,7 @@
   <connection>
    <sender>num_Amplitude</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>dial_2</receiver>
+   <receiver>rot_Amplitude</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -359,7 +362,7 @@
   <connection>
    <sender>num_Offset</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>dial_3</receiver>
+   <receiver>rot_Offset</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -375,7 +378,7 @@
   <connection>
    <sender>num_DutyCycle</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>dial_4</receiver>
+   <receiver>rot_DutyCycle</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -389,7 +392,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial_2</sender>
+   <sender>rot_Amplitude</sender>
    <signal>valueChanged(int)</signal>
    <receiver>num_Amplitude</receiver>
    <slot>setValue(int)</slot>
@@ -507,5 +510,6 @@
   <slot>setOffset(int)</slot>
   <slot>setDutyCycle(int)</slot>
   <slot>setSignalType(int)</slot>
+  <slot>ScopeRedraw()</slot>
  </slots>
 </ui>

@@ -18,10 +18,11 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     ui->cmb_SamplingFrequency->addItem("192000 Hz", 192000);
 
 
-    ui->cmb_SignalType->addItem("Cosinus", 1);
-    ui->cmb_SignalType->addItem("Rectangle", 2);
-    ui->cmb_SignalType->addItem("Triangle", 3);
-    ui->cmb_SignalType->addItem("Sinus", 0);
+    ui->cmb_SignalType->addItem("Cosinus", GBF_Signal::COSINUS);
+    ui->cmb_SignalType->addItem("Rectangle", GBF_Signal::SQUARE);
+    ui->cmb_SignalType->addItem("Triangle", GBF_Signal::TRIANGLE);
+    ui->cmb_SignalType->addItem("Sinus", GBF_Signal::SINUS);
+
 
 }
 
@@ -33,6 +34,29 @@ GBF_IHM::~GBF_IHM()
 
 void GBF_IHM::setSignalType(int Type)
 {
+    switch(Type)
+    {
+        case GBF_Signal::SINUS:
+            ui->rot_DutyCycle->setEnabled(false);
+            ui->num_DutyCycle->setEnabled(false);
+            break;
+
+        case GBF_Signal::COSINUS:
+        ui->rot_DutyCycle->setEnabled(false);
+        ui->num_DutyCycle->setEnabled(false);
+            break;
+
+        case GBF_Signal::SQUARE:
+            ui->rot_DutyCycle->setEnabled(true);
+            ui->num_DutyCycle->setEnabled(true);
+            break;
+
+        case GBF_Signal::TRIANGLE:
+            ui->rot_DutyCycle->setEnabled(false);
+            ui->num_DutyCycle->setEnabled(false);
+            break;
+    }
+
     m_Generator->setSignal(Type);
 }
 
@@ -54,4 +78,9 @@ void GBF_IHM::setOffset (int Offset)
 void GBF_IHM::setAmplitude (int Amplitude)
 {
     m_Generator->setAmplitude(Amplitude);
+}
+
+void GBF_IHM::resizeEvent(QResizeEvent *event)
+{
+    m_Generator->ScopeRefresh();
 }

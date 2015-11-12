@@ -6,10 +6,13 @@ GBF_Generator::GBF_Generator(QGraphicsView* Displayer)
 
     //Scène et Vue pour la visualisation du signal
     m_Displayer = Displayer;
+    m_Displayer->centerOn(0, 0);
     m_Scene = new QGraphicsScene(QRect(0, 0, m_Displayer->width(), m_Displayer->height()));
 
     m_Scene->setBackgroundBrush(QBrush(QColor("black")));
     m_Displayer->setScene(m_Scene);
+    m_Scene->setSceneRect(m_Displayer->width()/-2.0, m_Displayer->height()/-2, m_Displayer->width()/2, m_Displayer->height()/2);
+    //m_Displayer->ensureVisible(0, 0, m_Displayer->width(), m_Displayer->height());
 
     DisplayGrid();
 }
@@ -113,12 +116,21 @@ void GBF_Generator::setSignal (unsigned int SignalType)
 }
 
 
+void GBF_Generator::ScopeRefresh()
+{
+    DisplayGrid();
+    m_Displayer->setSceneRect(m_Scene->itemsBoundingRect());
+}
+
 void GBF_Generator::DisplayGrid()
 {
-    int width = m_Scene->width();
-    int height = m_Scene->height();
+    int width = m_Displayer->width();
+    int height = m_Displayer->height();
+
+    //m_Scene
+
     QPen Pen(QColor(0, 255, 0, 255));
-    Pen.setWidthF(1);
+    Pen.setWidthF(0.75);
 
     m_Scene->clear();
 
