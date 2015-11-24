@@ -6,8 +6,6 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     this->setWindowTitle("Projet GBF");
     ui->setupUi(this);
 
-    m_Generator = new  GBF_Generator(ui->gra_View);
-
     ui->cmb_Resolution->addItem("8 bits", 8);
     ui->cmb_Resolution->addItem("12 bits", 12);
     ui->cmb_Resolution->addItem("16 bits", 16);
@@ -23,17 +21,24 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     ui->cmb_SignalType->addItem("Triangle", GBF_Signal::TRIANGLE);
     ui->cmb_SignalType->addItem("Sinus", GBF_Signal::SINUS);
 
+    m_Generator = new GBF_Generator(ui->gra_View);
+
+    QObject::connect(ui->cmb_SignalType, SIGNAL(currentIndexChanged(int)), this, SLOT(setSignalType()));
 
 }
 
 GBF_IHM::~GBF_IHM()
 {
     delete ui;
+    delete m_Generator;
 }
 
 
-void GBF_IHM::setSignalType(int Type)
+void GBF_IHM::setSignalType()
 {
+
+    int Type = ui->cmb_SignalType->currentData().toInt();
+
     switch(Type)
     {
         case GBF_Signal::SINUS:
@@ -42,8 +47,8 @@ void GBF_IHM::setSignalType(int Type)
             break;
 
         case GBF_Signal::COSINUS:
-        ui->rot_DutyCycle->setEnabled(false);
-        ui->num_DutyCycle->setEnabled(false);
+            ui->rot_DutyCycle->setEnabled(false);
+            ui->num_DutyCycle->setEnabled(false);
             break;
 
         case GBF_Signal::SQUARE:
@@ -80,7 +85,9 @@ void GBF_IHM::setAmplitude (int Amplitude)
     m_Generator->setAmplitude(Amplitude);
 }
 
+
 void GBF_IHM::resizeEvent(QResizeEvent *event)
 {
     m_Generator->ScopeRefresh();
 }
+

@@ -9,7 +9,6 @@ GBF_Signal::GBF_Signal(double Frequency, double Amplitude, double Offset)
 
 GBF_Signal::~GBF_Signal()
 {
-
 }
 
 void GBF_Signal::setFrequency (double Frequency)
@@ -63,9 +62,9 @@ double GBF_Signal::Amplitude() const
     return m_Amplitude;
 }
 
-const std::vector<int> GBF_Signal::Waveform ()
+std::vector<int>* GBF_Signal::Waveform ()
 {
-    return m_Waveform;
+    return &m_Waveform;
 }
 
 unsigned int GBF_Signal::Type()
