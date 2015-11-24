@@ -1,6 +1,6 @@
 #include "GBF_CosinusWave.h"
 
-GBF_CosinusWave::GBF_CosinusWave(double Frequency,double Amplitude,double Offset, int Resolution,int SamplingFrequency): GBF_Signal(Frequency,Amplitude,Offset)
+GBF_CosinusWave::GBF_CosinusWave(double Frequency, double Amplitude, double Offset, int Resolution,int SamplingFrequency) : GBF_Signal(Frequency,Amplitude,Offset)
 {
     m_Type=GBF_Signal::COSINUS;
     ComputeWaveform(Resolution,SamplingFrequency);
@@ -18,9 +18,13 @@ void GBF_CosinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
 
      for(int i = 0; i < NbSamples; i++)
      {
-         CurrentSample =MaximumAmplitude*cos(i);
+         CurrentSample =MaximumAmplitude*cos(i*2*M_PI/NbSamples);
          m_Waveform.push_back(CurrentSample);
 
      }
 }
 
+void GBF_SinusWave::setDutyCycle(double DutyCycle)
+{}
+double GBF_SinusWave::DutyCycle() const
+{}
