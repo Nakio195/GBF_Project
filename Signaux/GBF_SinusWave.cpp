@@ -19,7 +19,13 @@ void GBF_SinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
 
      for(int i = 0; i < NbSamples; i++)
      {
-         CurrentSample =MaximumAmplitude*sin(i*2*M_PI/NbSamples);
+         CurrentSample =m_Amplitude*sin(i*2*M_PI/NbSamples)+m_Offset;
+
+         if(CurrentSample > MaximumAmplitude)
+             CurrentSample = MaximumAmplitude;
+         else if(CurrentSample < MaximumAmplitude * -1)
+             CurrentSample = MaximumAmplitude * -1;
+
          m_Waveform.push_back(CurrentSample);
 
      }
