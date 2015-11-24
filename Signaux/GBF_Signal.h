@@ -28,12 +28,12 @@ class GBF_Signal
         unsigned int Type();
 
     protected:
-        double m_Frequency;               /// Fréquence en Hz du signal
-        double m_Offset;                  /// Composante continue du signal
-        double m_Amplitude;               /// Amplitude crête à crête
-        std::vector<int> m_Waveform;   /// Contient les points calculés du signal
+        double m_Frequency;                 /// Fréquence en Hz du signal
+        double m_Offset;                    /// Composante continue du signal
+        double m_Amplitude;                 /// Amplitude crête à crête
+        std::vector<int> m_Waveform;        /// Contient les points calculés du signal
 
-        unsigned int m_Type;                           /// Type du signal selon l'enum SignalType
+        unsigned int m_Type;                /// Type du signal selon l'enum SignalType
 };
 
 
