@@ -24,7 +24,7 @@ void GBF_CosinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
      }
 }
 
-void GBF_SinusWave::setDutyCycle(double DutyCycle)
+void GBF_CosinusWave::setDutyCycle(double DutyCycle)
 {}
-double GBF_SinusWave::DutyCycle() const
+double GBF_CosinusWave::DutyCycle() const
 {}
