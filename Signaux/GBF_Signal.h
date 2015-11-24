@@ -22,7 +22,7 @@ class GBF_Signal
         virtual double DutyCycle() const = 0;
 
         virtual void ComputeWaveform (int Resolution, int SamplingFrequency) = 0;
-        const std::vector<int> Waveform();
+        std::vector<int> *Waveform();
 
         enum SignalType {SQUARE = 0, SINUS, COSINUS, TRIANGLE};
         unsigned int Type();

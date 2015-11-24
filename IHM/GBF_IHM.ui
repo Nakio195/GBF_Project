@@ -487,29 +487,13 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>cmb_SignalType</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>GBF_IHM</receiver>
-   <slot>setSignalType(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>107</x>
-     <y>364</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>411</x>
-     <y>209</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
  <slots>
   <slot>setFrequency(int)</slot>
   <slot>setAmplitude(int)</slot>
   <slot>setOffset(int)</slot>
   <slot>setDutyCycle(int)</slot>
-  <slot>setSignalType(int)</slot>
+  <slot>setSignalType()</slot>
   <slot>ScopeRedraw()</slot>
  </slots>
 </ui>

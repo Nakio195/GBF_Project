@@ -12,7 +12,6 @@ GBF_Generator::GBF_Generator(QGraphicsView* Displayer)
     m_Scene->setBackgroundBrush(QBrush(QColor("black")));
     m_Displayer->setScene(m_Scene);
     m_Scene->setSceneRect(m_Displayer->width()/-2.0, m_Displayer->height()/-2, m_Displayer->width()/2, m_Displayer->height()/2);
-    //m_Displayer->ensureVisible(0, 0, m_Displayer->width(), m_Displayer->height());
 
     DisplayGrid();
 }
@@ -119,15 +118,14 @@ void GBF_Generator::setSignal (unsigned int SignalType)
 void GBF_Generator::ScopeRefresh()
 {
     DisplayGrid();
+    DisplaySignal();
     m_Displayer->setSceneRect(m_Scene->itemsBoundingRect());
 }
 
 void GBF_Generator::DisplayGrid()
 {
-    int width = m_Displayer->width();
-    int height = m_Displayer->height();
-
-    //m_Scene
+    int Width = m_Displayer->width();
+    int Height = m_Displayer->height();
 
     QPen Pen(QColor(0, 255, 0, 255));
     Pen.setWidthF(0.75);
@@ -136,12 +134,37 @@ void GBF_Generator::DisplayGrid()
 
     for(int i = 1; i < 10; i++)
     {
-       // m_Scene->addLine()
-        m_Scene->addLine(0, i*height/10, width, i*height/10, Pen);
-        m_Scene->addLine(i*width/10, 0, i*width/10, height, Pen);
+        m_Scene->addLine(0, i*Height/10, Width, i*Height/10, Pen);
+        m_Scene->addLine(i*Width/10, 0, i*Width/10, Height, Pen);
     }
 
     Pen.setColor(QColor(255, 255, 255, 255));
-    m_Scene->addRect(0, 0, width, height, Pen);
+    m_Scene->addRect(0, 0, Width, Height, Pen);
 
+}
+
+void GBF_Generator::DisplaySignal()
+{
+    unsigned int NbSamples = 0;
+    unsigned int CurrentSample = 0;
+
+    unsigned int Width = m_Displayer->width();
+    unsigned int Height = m_Displayer->height();
+    double SampleLength = 0;
+
+    QPen Pen(QColor(0, 0, 255, 255));
+    Pen.setWidthF(1);
+
+    std::vector<int> *Waveform = m_CurrentSignal->Waveform();
+
+    if(Waveform->size() != 0)
+    {
+        NbSamples = Waveform->size();
+        SampleLength = Width / NbSamples;
+
+        for(CurrentSample = 0; CurrentSample < Waveform->size(); CurrentSample++)
+        {
+            m_Scene->addLine(CurrentSample*SampleLength, Waveform->at(CurrentSample) * Height, 2*CurrentSample*SampleLength, Waveform->at(CurrentSample)*Height, Pen);
+        }
+    }
 }

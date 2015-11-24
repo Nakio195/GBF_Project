@@ -33,7 +33,7 @@ class GBF_Generator
         void setSignal (unsigned int SignalType = 0);
 
         void DisplayGrid();
-
+        void DisplaySignal();
         void ScopeRefresh();            /// Rafraichit et redessine la zone de dessin
 
     private:

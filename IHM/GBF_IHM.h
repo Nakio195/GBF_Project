@@ -20,7 +20,7 @@ class GBF_IHM : public QMainWindow
         ~GBF_IHM();
 
     public slots:
-        void setSignalType(int Type);
+        void setSignalType();
         void setFrequency (int Frequency);
         void setDutyCycle (int Duty);
         void setOffset (int Offset);
