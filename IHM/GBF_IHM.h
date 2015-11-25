@@ -22,10 +22,13 @@ class GBF_IHM : public QMainWindow
 
     public slots:
         void setSignalType();
+        void setResolution();
+        void setSamplingFrequency();
         void setFrequency (int Frequency);
         void setDutyCycle (int Duty);
         void setOffset (int Offset);
         void setAmplitude (int Amplitude);
+
         void resizeEvent(QResizeEvent *event);
         void ShowExportIHM();
 

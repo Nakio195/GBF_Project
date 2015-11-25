@@ -2,7 +2,16 @@
 
 GBF_Generator::GBF_Generator(QGraphicsView* Displayer)
 {
-    m_CurrentSignal = new GBF_CosinusWave();
+    m_Type = GBF_Signal::COSINUS;
+    m_Amplitude = 0.5;
+    m_DutyCycle = 0.5;
+    m_Frequency = 1000;
+    m_Offset = 0.0;
+    m_Resolution = 8;
+    m_SamplingFrequency = 44100;
+    m_Type = GBF_Signal::COSINUS;
+
+    m_CurrentSignal = new GBF_CosinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
 
     //Scène et Vue pour la visualisation du signal
     m_Displayer = Displayer;
@@ -12,8 +21,6 @@ GBF_Generator::GBF_Generator(QGraphicsView* Displayer)
     m_Scene->setBackgroundBrush(QBrush(QColor("black")));
     m_Displayer->setScene(m_Scene);
     m_Scene->setSceneRect(m_Displayer->width()/-2.0, m_Displayer->height()/-2, m_Displayer->width()/2, m_Displayer->height()/2);
-
-    DisplayGrid();
 }
 
 void GBF_Generator::setName (QString Name)
@@ -35,6 +42,8 @@ void GBF_Generator::setFrequency (double Frequency)
 {
     m_CurrentSignal->setFrequency(Frequency);
     m_Frequency = Frequency;
+
+    UpdateSignal();
 }
 
 double GBF_Generator::Frequency ()
@@ -50,6 +59,8 @@ void GBF_Generator::setDutyCycle (double Duty)
     }
 
     m_DutyCycle = Duty;
+
+    UpdateSignal();
 }
 
 double GBF_Generator::DutyCycle ()
@@ -66,6 +77,8 @@ void GBF_Generator::setOffset (double Offset)
 {
     m_CurrentSignal->setOffset(Offset);
     m_Offset = Offset;
+
+    UpdateSignal();
 }
 
 double GBF_Generator::Offset ()
@@ -77,6 +90,8 @@ void GBF_Generator::setAmplitude (double Amplitude)
 {
     m_CurrentSignal->setAmplitude(Amplitude);
     m_Amplitude = Amplitude;
+
+    UpdateSignal();
 }
 
 double GBF_Generator::Amplitude ()
@@ -88,6 +103,8 @@ double GBF_Generator::Amplitude ()
 void GBF_Generator::setResolution (unsigned int Resolution)
 {
     m_Resolution = Resolution;
+
+    UpdateSignal();
 }
 
 unsigned int GBF_Generator::Resolution ()
@@ -98,6 +115,8 @@ unsigned int GBF_Generator::Resolution ()
 void GBF_Generator::setSamplingFrequency (unsigned int SamplingFrequency)
 {
     m_SamplingFrequency = SamplingFrequency;
+
+    UpdateSignal();
 }
 
 unsigned int GBF_Generator::SamplingFrequency()
@@ -105,30 +124,37 @@ unsigned int GBF_Generator::SamplingFrequency()
     return m_SamplingFrequency;
 }
 
-
-void GBF_Generator::setSignal (unsigned int SignalType)
+void GBF_Generator::setSignalType(unsigned int Type)
 {
-    if(m_CurrentSignal == NULL || m_CurrentSignal->Type() != SignalType)
+    m_Type = Type;
+
+    UpdateSignal();
+}
+
+void GBF_Generator::UpdateSignal()
+{
+
+    switch(m_Type)
     {
-        switch(SignalType)
-        {
-            case GBF_Signal::SINUS:
-                m_CurrentSignal = new GBF_SinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
-                break;
+        case GBF_Signal::SINUS:
+            m_CurrentSignal = new GBF_SinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
+            break;
 
-            case GBF_Signal::COSINUS:
-                m_CurrentSignal = new GBF_CosinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
-                break;
+        case GBF_Signal::COSINUS:
+            m_CurrentSignal = new GBF_CosinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
+            break;
 
-            case GBF_Signal::SQUARE:
-                m_CurrentSignal = new GBF_SquareWave(m_Frequency, m_Amplitude, m_Offset, m_DutyCycle, m_Resolution, m_SamplingFrequency);
-                break;
+        case GBF_Signal::SQUARE:
+            m_CurrentSignal = new GBF_SquareWave(m_Frequency, m_Amplitude, m_Offset, m_DutyCycle, m_Resolution, m_SamplingFrequency);
+            break;
 
-            case GBF_Signal::TRIANGLE:
-                m_CurrentSignal = new GBF_TriangleWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
-                break;
-        }
+        case GBF_Signal::TRIANGLE:
+            m_CurrentSignal = new GBF_TriangleWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
+            break;
     }
+
+
+    ScopeRefresh();
 }
 
 
@@ -165,12 +191,12 @@ void GBF_Generator::DisplaySignal()
     unsigned int NbSamples = 0;
     unsigned int CurrentSample = 0;
 
-    unsigned int Width = m_Displayer->width();
-    unsigned int Height = m_Displayer->height();
+    double Width = m_Displayer->width();
+    double Height = m_Displayer->height();
     double SampleLength = 0;
-    unsigned int MaximumAmplitude = pow(2, m_Resolution)/2 -1;
+    int MaximumAmplitude = pow(2, m_Resolution)/2 -1;
 
-    QPen Pen(QColor(0, 0, 255, 255));
+    QPen Pen(QColor(255, 255, 255, 255));
     Pen.setWidthF(1);
 
     std::vector<int> *Waveform = m_CurrentSignal->Waveform();
@@ -182,7 +208,10 @@ void GBF_Generator::DisplaySignal()
 
         for(CurrentSample = 0; CurrentSample < Waveform->size(); CurrentSample++)
         {
-            m_Scene->addLine(CurrentSample*SampleLength, Waveform->at(CurrentSample) * Height/MaximumAmplitude, 2*CurrentSample*SampleLength, Waveform->at(CurrentSample)*Height/MaximumAmplitude, Pen);
+            int x = CurrentSample*SampleLength;
+            int y = (Waveform->at(CurrentSample)*-1*Height)/(2*MaximumAmplitude) + Height/2;
+
+            m_Scene->addLine(x, y, x + SampleLength, y, Pen);
         }
     }
 }

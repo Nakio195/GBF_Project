@@ -38,7 +38,8 @@ class GBF_Generator
         void setSamplingFrequency (unsigned int SamplingFrequency = 44100);
         unsigned int SamplingFrequency ();
 
-        void setSignal (unsigned int SignalType = 0);
+        void setSignalType(unsigned int Type);
+        void UpdateSignal();
 
         void DisplayGrid();
         void DisplaySignal();
@@ -56,6 +57,7 @@ class GBF_Generator
 
         int m_Resolution;
         int m_SamplingFrequency;
+        int m_Type;
 };
 
 
