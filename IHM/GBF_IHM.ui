@@ -487,6 +487,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btn_Export</sender>
+   <signal>clicked()</signal>
+   <receiver>GBF_IHM</receiver>
+   <slot>ShowExportIHM()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>310</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>411</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setFrequency(int)</slot>
@@ -495,5 +511,6 @@
   <slot>setDutyCycle(int)</slot>
   <slot>setSignalType()</slot>
   <slot>ScopeRedraw()</slot>
+  <slot>ShowExportIHM()</slot>
  </slots>
 </ui>
