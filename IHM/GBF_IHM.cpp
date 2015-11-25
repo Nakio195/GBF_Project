@@ -23,6 +23,13 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
 
     m_Generator = new GBF_Generator(ui->gra_View);
 
+    ui->cmb_Resolution->setCurrentIndex(0);
+    ui->cmb_SamplingFrequency->setCurrentIndex(0);
+    ui->cmb_SignalType->setCurrentIndex(0);
+    ui->rot_Amplitude->setValue(50);
+    ui->rot_DutyCycle->setValue(50);
+    ui->rot_Frequency->setValue(1000);
+    ui->rot_Offset->setValue(0);
     QObject::connect(ui->cmb_SignalType, SIGNAL(currentIndexChanged(int)), this, SLOT(setSignalType()));
 
 }

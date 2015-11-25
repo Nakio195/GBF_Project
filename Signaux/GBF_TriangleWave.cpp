@@ -11,7 +11,7 @@ void GBF_TriangleWave::setDutyCycle(double DutyCycle)
 {}
 
 double GBF_TriangleWave::DutyCycle() const
-{}
+{return 0;}
 
 
 void GBF_TriangleWave::ComputeWaveform(int Resolution, int SamplingFrequency)

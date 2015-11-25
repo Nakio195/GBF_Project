@@ -151,6 +151,7 @@ void GBF_Generator::DisplaySignal()
     unsigned int Width = m_Displayer->width();
     unsigned int Height = m_Displayer->height();
     double SampleLength = 0;
+    unsigned int MaximumAmplitude = pow(2, m_Resolution)/2 -1;
 
     QPen Pen(QColor(0, 0, 255, 255));
     Pen.setWidthF(1);
@@ -164,7 +165,7 @@ void GBF_Generator::DisplaySignal()
 
         for(CurrentSample = 0; CurrentSample < Waveform->size(); CurrentSample++)
         {
-            m_Scene->addLine(CurrentSample*SampleLength, Waveform->at(CurrentSample) * Height, 2*CurrentSample*SampleLength, Waveform->at(CurrentSample)*Height, Pen);
+            m_Scene->addLine(CurrentSample*SampleLength, Waveform->at(CurrentSample) * Height/MaximumAmplitude, 2*CurrentSample*SampleLength, Waveform->at(CurrentSample)*Height/MaximumAmplitude, Pen);
         }
     }
 }
