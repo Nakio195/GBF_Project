@@ -6,6 +6,8 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     this->setWindowTitle("Projet GBF");
     ui->setupUi(this);
 
+    m_Generator = new GBF_Generator(ui->gra_View);
+
     ui->cmb_Resolution->addItem("8 bits", 8);
     ui->cmb_Resolution->addItem("12 bits", 12);
     ui->cmb_Resolution->addItem("16 bits", 16);
@@ -21,17 +23,41 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     ui->cmb_SignalType->addItem("Triangle", GBF_Signal::TRIANGLE);
     ui->cmb_SignalType->addItem("Sinus", GBF_Signal::SINUS);
 
-    m_Generator = new GBF_Generator(ui->gra_View);
-
+    ui->cmb_SignalType->setCurrentIndex(0);
     ui->cmb_Resolution->setCurrentIndex(0);
     ui->cmb_SamplingFrequency->setCurrentIndex(0);
-    ui->cmb_SignalType->setCurrentIndex(0);
+
     ui->rot_Amplitude->setValue(50);
     ui->rot_DutyCycle->setValue(50);
     ui->rot_Frequency->setValue(1000);
     ui->rot_Offset->setValue(0);
-    QObject::connect(ui->cmb_SignalType, SIGNAL(currentIndexChanged(int)), this, SLOT(setSignalType()));
+    ui->num_Amplitude->setValue(50);
+    ui->num_DutyCycle->setValue(50);
+    ui->num_Frequency->setValue(1000);
+    ui->num_Offset->setValue(0);
 
+    m_Generator->setAmplitude(50);
+    m_Generator->setDutyCycle(50);
+    m_Generator->setFrequency(1000);
+    m_Generator->setOffset(0);
+    m_Generator->setResolution(8);
+    m_Generator->setSamplingFrequency(44100);
+    m_Generator->setSignal(GBF_Signal::COSINUS);
+
+    QObject::connect(ui->cmb_SignalType, SIGNAL(currentIndexChanged(int)), this, SLOT(setSignalType()));
+    QObject::connect(ui->btn_Export, SIGNAL(clicked(bool)), this, SLOT(ShowExportIHM()));
+    QObject::connect(ui->rot_Offset, SIGNAL(valueChanged(int)), ui->num_Offset, SLOT(setValue(int)));
+    QObject::connect(ui->rot_Frequency, SIGNAL(valueChanged(int)), ui->num_Frequency, SLOT(setValue(int)));
+    QObject::connect(ui->rot_DutyCycle, SIGNAL(valueChanged(int)), ui->num_DutyCycle, SLOT(setValue(int)));
+    QObject::connect(ui->rot_Amplitude, SIGNAL(valueChanged(int)), ui->num_Amplitude, SLOT(setValue(int)));
+    QObject::connect(ui->num_Frequency, SIGNAL(valueChanged(int)), ui->rot_Frequency, SLOT(setValue(int)));
+    QObject::connect(ui->num_DutyCycle, SIGNAL(valueChanged(int)), ui->rot_DutyCycle, SLOT(setValue(int)));
+    QObject::connect(ui->num_Amplitude, SIGNAL(valueChanged(int)), ui->rot_Amplitude, SLOT(setValue(int)));
+    QObject::connect(ui->num_Offset, SIGNAL(valueChanged(int)), ui->rot_Offset, SLOT(setValue(int)));
+    QObject::connect(ui->num_Frequency, SIGNAL(valueChanged(int)), this, SLOT(setFrequency(int)));
+    QObject::connect(ui->num_DutyCycle, SIGNAL(valueChanged(int)), this, SLOT(setDutyCycle(int)));
+    QObject::connect(ui->num_Amplitude, SIGNAL(valueChanged(int)), this, SLOT(setAmplitude(int)));
+    QObject::connect(ui->num_Offset, SIGNAL(valueChanged(int)), this, SLOT(setOffset(int)));
 
 }
 

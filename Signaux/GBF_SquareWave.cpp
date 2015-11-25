@@ -48,7 +48,7 @@ void GBF_SquareWave::ComputeWaveform(int Resolution, int SamplingFrequency)
             m_Waveform.push_back(CurrentSample);                                 // Ajout de l'échantillon precedement calculé a la fin de la waveform
         }
 
-        else                                                                     // Calcul des échantillon de la partie haute du signal
+        else                                                                     // Calcul des échantillon de la partie basse du signal
         {
             CurrentSample = int(-1 * m_Amplitude * MaximumAmplitude + m_Offset * MaximumAmplitude); // Formule de calcul partie basse
             if(CurrentSample > MaximumAmplitude)                                                    // Si saturation positive

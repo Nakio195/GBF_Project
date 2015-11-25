@@ -7,6 +7,8 @@
 #include "Signaux/GBF_Signal.h"
 #include "Signaux/GBF_SquareWave.h"
 #include "Signaux/GBF_TriangleWave.h"
+#include "Signaux/GBF_CosinusWave.h"
+#include "Signaux/GBF_SinusWave.h"
 
 class GBF_Generator
 {
@@ -30,6 +32,12 @@ class GBF_Generator
         void setAmplitude (double Amplitude = 0);
         double Amplitude ();
 
+        void setResolution (unsigned int Resolution = 8);
+        unsigned int Resolution();
+
+        void setSamplingFrequency (unsigned int SamplingFrequency = 44100);
+        unsigned int SamplingFrequency ();
+
         void setSignal (unsigned int SignalType = 0);
 
         void DisplayGrid();
@@ -45,6 +53,7 @@ class GBF_Generator
         double m_Amplitude;             /// Amplitude du signal en pourcentage de la pleine échelle en fonction de la rés
         double m_DutyCycle;             /// Rapport cyclique du signal de 0% à 100%
         double m_Offset;                /// Composante continue en pourcentage de la pleine échelle en fonction de la rés
+
         int m_Resolution;
         int m_SamplingFrequency;
 };

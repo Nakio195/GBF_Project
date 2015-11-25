@@ -2,7 +2,7 @@
 
 GBF_Generator::GBF_Generator(QGraphicsView* Displayer)
 {
-    m_CurrentSignal = new GBF_TriangleWave();
+    m_CurrentSignal = new GBF_CosinusWave();
 
     //Scène et Vue pour la visualisation du signal
     m_Displayer = Displayer;
@@ -84,23 +84,40 @@ double GBF_Generator::Amplitude ()
     return m_CurrentSignal->Amplitude();
 }
 
+
+void GBF_Generator::setResolution (unsigned int Resolution)
+{
+    m_Resolution = Resolution;
+}
+
+unsigned int GBF_Generator::Resolution ()
+{
+    return m_Resolution;
+}
+
+void GBF_Generator::setSamplingFrequency (unsigned int SamplingFrequency)
+{
+    m_SamplingFrequency = SamplingFrequency;
+}
+
+unsigned int GBF_Generator::SamplingFrequency()
+{
+    return m_SamplingFrequency;
+}
+
+
 void GBF_Generator::setSignal (unsigned int SignalType)
 {
-    if(m_CurrentSignal->Type() == SignalType)
-        return;
-
-    else
+    if(m_CurrentSignal == NULL || m_CurrentSignal->Type() != SignalType)
     {
-        delete m_CurrentSignal;
-
         switch(SignalType)
         {
             case GBF_Signal::SINUS:
-                m_CurrentSignal = new GBF_SquareWave(m_Frequency, m_Amplitude, m_Offset, m_DutyCycle, m_Resolution, m_SamplingFrequency);
+                m_CurrentSignal = new GBF_SinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
                 break;
 
             case GBF_Signal::COSINUS:
-                m_CurrentSignal = new GBF_SquareWave(m_Frequency, m_Amplitude, m_Offset, m_DutyCycle, m_Resolution, m_SamplingFrequency);
+                m_CurrentSignal = new GBF_CosinusWave(m_Frequency, m_Amplitude, m_Offset, m_Resolution, m_SamplingFrequency);
                 break;
 
             case GBF_Signal::SQUARE:

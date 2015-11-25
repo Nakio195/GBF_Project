@@ -19,7 +19,7 @@ void GBF_CosinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
      for(int i = 0; i < NbSamples; i++)                 // boucle de calcul de chaque echantillon
      { 
 
-         CurrentSample =m_Amplitude *MaximumAmplitude*cos(i*2*M_PI/NbSamples)+m_Offset;       // Calcul de l'échantillon en fonction du signal
+         CurrentSample = m_Amplitude *MaximumAmplitude*cos(i*2*M_PI/NbSamples) + m_Offset;       // Calcul de l'échantillon en fonction du signal
 
          if(CurrentSample > MaximumAmplitude)                               // Si saturation positive
              CurrentSample = MaximumAmplitude;                              // Ecretage positif
