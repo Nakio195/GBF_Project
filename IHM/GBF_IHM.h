@@ -5,6 +5,7 @@
 #include "Signaux/GBF_SquareWave.h"
 #include "Signaux/GBF_TriangleWave.h"
 #include "Generator/GBF_Generator.h"
+#include "IHM/GBF_IHM_Export.h"
 
 namespace Ui
 {
@@ -26,9 +27,11 @@ class GBF_IHM : public QMainWindow
         void setOffset (int Offset);
         void setAmplitude (int Amplitude);
         void resizeEvent(QResizeEvent *event);
+        void ShowExportIHM();
 
     private:
         Ui::GBF_IHM *ui;
+        GBF_IHM_Export* m_Export_IHM;
         GBF_Generator* m_Generator;
 };
 
