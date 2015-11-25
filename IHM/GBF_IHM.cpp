@@ -25,6 +25,7 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
 
     QObject::connect(ui->cmb_SignalType, SIGNAL(currentIndexChanged(int)), this, SLOT(setSignalType()));
 
+
 }
 
 GBF_IHM::~GBF_IHM()
@@ -89,5 +90,15 @@ void GBF_IHM::setAmplitude (int Amplitude)
 void GBF_IHM::resizeEvent(QResizeEvent *event)
 {
     m_Generator->ScopeRefresh();
+}
+
+
+void GBF_IHM::ShowExportIHM()
+{
+    if(m_Export_IHM != NULL)
+        delete m_Export_IHM;
+
+    m_Export_IHM = new GBF_IHM_Export();
+    m_Export_IHM->show();
 }
 

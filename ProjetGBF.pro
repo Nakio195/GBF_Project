@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     Signaux/GBF_TriangleWave.cpp \
     Generator/GBF_Generator.cpp \
     Signaux/GBF_CosinusWave.cpp \
-    Signaux/GBF_SinusWave.cpp
+    Signaux/GBF_SinusWave.cpp \
+    IHM/GBF_IHM_Export.cpp
 
 HEADERS  += \
     IHM\GBF_IHM.h \
@@ -28,7 +29,9 @@ HEADERS  += \
     Signaux/GBF_TriangleWave.h \
     Generator/GBF_Generator.h \
     Signaux/GBF_CosinusWave.h \
-    Signaux/GBF_SinusWave.h
+    Signaux/GBF_SinusWave.h \
+    IHM/GBF_IHM_Export.h
 
 FORMS    += \
-    IHM\GBF_IHM.ui
+    IHM\GBF_IHM.ui \
+    IHM/GBF_IHM_Export.ui

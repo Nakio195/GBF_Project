@@ -50,6 +50,5 @@ void GBF_TriangleWave::ComputeWaveform(int Resolution, int SamplingFrequency)
             m_Waveform.push_back(CurrentSample);        // Ajout de l'échantillon precedement calculé a la fin de la waveform
 
         }
-        }
     }
 }
