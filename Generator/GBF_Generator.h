@@ -45,6 +45,8 @@ class GBF_Generator
         void DisplaySignal();
         void ScopeRefresh();            /// Rafraichit et redessine la zone de dessin
 
+        void Export();                  /// Création du fichier Wave
+
     private:
         std::string m_Name;                 /// Nom du générateur
         GBF_Signal* m_CurrentSignal;        /// Pointeur sur un signal courant créer dynamiquement
