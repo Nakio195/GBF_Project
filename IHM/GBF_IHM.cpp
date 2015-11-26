@@ -43,6 +43,7 @@ GBF_IHM::GBF_IHM(QWidget *parent) : QMainWindow(parent), ui(new Ui::GBF_IHM)
     QObject::connect(ui->cmb_Resolution, SIGNAL(currentIndexChanged(int)), this, SLOT(setResolution()));
     QObject::connect(ui->cmb_SamplingFrequency, SIGNAL(currentIndexChanged(int)), this, SLOT(setSamplingFrequency()));
     QObject::connect(ui->btn_Export, SIGNAL(clicked(bool)), this, SLOT(ShowExportIHM()));
+    QObject::connect(ui->actionQuitter,SIGNAL(triggered(bool)), this, SLOT(Exit()));
 
     QObject::connect(ui->rot_Offset, SIGNAL(valueChanged(int)), ui->num_Offset, SLOT(setValue(int)));
     QObject::connect(ui->rot_Frequency, SIGNAL(valueChanged(int)), ui->num_Frequency, SLOT(setValue(int)));
@@ -144,3 +145,9 @@ void GBF_IHM::ShowExportIHM()
     m_Export_IHM->show();
 }
 
+  void GBF_IHM::Exit()
+  {
+      delete ui;
+      delete m_Generator;
+      this->close();
+  }

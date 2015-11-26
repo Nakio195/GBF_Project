@@ -31,11 +31,13 @@ class GBF_IHM : public QMainWindow
 
         void resizeEvent(QResizeEvent *event);
         void ShowExportIHM();
+        void Exit();
 
     private:
         Ui::GBF_IHM *ui;
         GBF_IHM_Export* m_Export_IHM;
         GBF_Generator* m_Generator;
+
 };
 
 #endif // GBF_IHM_H
