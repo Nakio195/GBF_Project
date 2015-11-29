@@ -14,32 +14,15 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-<<<<<<< HEAD
    <item row="5" column="2">
     <widget class="QPushButton" name="btn_Cancel">
-=======
-   <item row="6" column="2">
-    <widget class="QPushButton" name="btn_Annuler">
->>>>>>> 3118395532de6e784c3d78d46ab87bcfd030b1f7
      <property name="text">
       <string>Annuler</string>
      </property>
     </widget>
    </item>
-<<<<<<< HEAD
    <item row="5" column="1">
     <widget class="QPushButton" name="btn_Save">
-=======
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>...</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QPushButton" name="btn_Enregistrer">
->>>>>>> 3118395532de6e784c3d78d46ab87bcfd030b1f7
      <property name="text">
       <string>Enregistrer</string>
      </property>
@@ -58,13 +41,8 @@
      </property>
     </spacer>
    </item>
-<<<<<<< HEAD
    <item row="4" column="0" colspan="3">
     <widget class="QDoubleSpinBox" name="doubleSpinBox">
-=======
-   <item row="5" column="0" colspan="3">
-    <widget class="QDoubleSpinBox" name="num_Time">
->>>>>>> 3118395532de6e784c3d78d46ab87bcfd030b1f7
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
@@ -77,13 +55,8 @@
      </property>
     </widget>
    </item>
-<<<<<<< HEAD
    <item row="2" column="0" colspan="3">
     <widget class="QLineEdit" name="lineEdit_2"/>
-=======
-   <item row="3" column="0" colspan="3">
-    <widget class="QLineEdit" name="str_Name"/>
->>>>>>> 3118395532de6e784c3d78d46ab87bcfd030b1f7
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QLabel" name="label_2">
@@ -92,20 +65,8 @@
      </property>
     </widget>
    </item>
-<<<<<<< HEAD
    <item row="0" column="0" colspan="3">
     <widget class="QTreeView" name="treeView"/>
-=======
-   <item row="1" column="0" colspan="2">
-    <widget class="QLineEdit" name="str_Link"/>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Dossier d'enregistrement du fichier wave</string>
-     </property>
-    </widget>
->>>>>>> 3118395532de6e784c3d78d46ab87bcfd030b1f7
    </item>
   </layout>
  </widget>
