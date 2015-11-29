@@ -14,3 +14,8 @@ GBF_IHM_Export::~GBF_IHM_Export()
     delete ui;
     delete m_TreeView;
 }
+
+GBF_IHM_Export::Export()
+{
+
+}
