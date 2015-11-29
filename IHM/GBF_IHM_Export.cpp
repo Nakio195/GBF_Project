@@ -5,9 +5,12 @@ GBF_IHM_Export::GBF_IHM_Export(QWidget *parent) : QWidget(parent), ui(new Ui::GB
 {
     ui->setupUi(this);
     this->setWindowTitle("Exporter...");
+    m_TreeView = new QDirModel();
+    ui->treeView->setModel(m_TreeView);
 }
 
 GBF_IHM_Export::~GBF_IHM_Export()
 {
     delete ui;
+    delete m_TreeView;
 }
