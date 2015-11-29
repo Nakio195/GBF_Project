@@ -15,7 +15,7 @@ GBF_IHM_Export::~GBF_IHM_Export()
     delete m_TreeView;
 }
 
-GBF_IHM_Export::Export()
+void GBF_IHM_Export::Export()
 {
 
 }
