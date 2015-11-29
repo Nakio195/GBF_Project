@@ -215,3 +215,9 @@ void GBF_Generator::DisplaySignal()
         }
     }
 }
+
+void GBF_Generator::Export()
+{
+
+
+}
