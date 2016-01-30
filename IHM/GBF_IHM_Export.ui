@@ -42,7 +42,7 @@
     </spacer>
    </item>
    <item row="4" column="0" colspan="3">
-    <widget class="QDoubleSpinBox" name="doubleSpinBox">
+    <widget class="QDoubleSpinBox" name="num_Duration">
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
@@ -56,7 +56,7 @@
     </widget>
    </item>
    <item row="2" column="0" colspan="3">
-    <widget class="QLineEdit" name="lineEdit_2"/>
+    <widget class="QLineEdit" name="txt_FileName"/>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QLabel" name="label_2">
@@ -71,5 +71,41 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btn_Cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>GBF_IHM_Export</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>448</x>
+     <y>399</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>247</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_Save</sender>
+   <signal>clicked()</signal>
+   <receiver>GBF_IHM_Export</receiver>
+   <slot>Export()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>367</x>
+     <y>399</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>247</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Export()</slot>
+ </slots>
 </ui>
