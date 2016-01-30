@@ -3,6 +3,11 @@
 
 #include <string.h>
 #include <QGraphicsView>
+#include <QFile>
+#include <QDataStream>
+#include <QTextStream>
+#include <QIODevice>
+#include <QMessageBox>
 
 #include "Signaux/GBF_Signal.h"
 #include "Signaux/GBF_SquareWave.h"
@@ -45,7 +50,7 @@ class GBF_Generator
         void DisplaySignal();
         void ScopeRefresh();            /// Rafraichit et redessine la zone de dessin
 
-        void Export();                  /// Création du fichier Wave
+        void Export(double Duration, QString FilePath);                  /// Création du fichier Wave
 
     private:
         std::string m_Name;                 /// Nom du générateur

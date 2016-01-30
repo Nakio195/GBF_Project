@@ -216,8 +216,64 @@ void GBF_Generator::DisplaySignal()
     }
 }
 
-void GBF_Generator::Export()
+void GBF_Generator::Export(double Duration, QString FilePath)
 {
 
+    if(m_Resolution != 8 && m_Resolution != 16)
+    {
+        QMessageBox::warning(0, "Oupsy daisy !", "La résolution choisie n'est pas encore supportée...");
+        return;
+    }
 
+    QFile File(FilePath);
+
+    if(!File.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    {
+        QMessageBox::critical(0, "Erreur système de la mort !", "Impossible de créer le fichier vérifiez vos autorisations !");
+        return;
+    }
+
+    QDataStream Data(&File);
+    Data.setByteOrder(QDataStream::LittleEndian);
+    Data.writeRawData("RIFF", 4);
+
+    Data << quint32(Duration*(m_SamplingFrequency/(unsigned int)m_Frequency)*(m_Resolution/8)+36);
+    Data.writeRawData("WAVE", 4);
+
+
+    Data.writeRawData("fmt ", 4);
+
+    Data << quint32(16);                                                                        // Taille du bloc "fmt " (=16 pour du PCM)
+    Data << quint16(1);                                                                         // Format du fichier (1=PCM)
+    Data << quint16(1);                                                                         // Nombre de canaux
+    Data << quint32(m_SamplingFrequency);                                                       // fréquence d'échantillonnage
+    Data << quint32(m_SamplingFrequency * 1 * m_Resolution / 8 );                               // octets par seconde
+    Data << quint16(1 * m_Resolution / 8);                                                      // octets par bloc d'échantillon
+    Data << quint16(m_Resolution);                                                              // bits par échantillon par canal
+    Data.writeRawData("data", 4);
+
+    for(unsigned int j = 0; j < (Duration*(unsigned int)m_Frequency); j++)
+    {
+        for(unsigned int  i = 0; i < m_CurrentSignal->Waveform()->size(); i++)
+        {
+            if(m_Resolution == 16)
+            {
+                Data << qint16(m_CurrentSignal->Waveform()->at(i));
+            }
+
+            else if(m_Resolution == 8)
+            {
+                Data << qint8(m_CurrentSignal->Waveform()->at(i));
+            }
+
+        }
+    }
+
+
+    Data << qint32(Duration*(m_SamplingFrequency/(unsigned int)m_Frequency)*(m_Resolution/8));
+
+
+    File.close();
+
+    QMessageBox::information(0, "Fichier exporté !", "Fichier correctement exporté !");
 }
