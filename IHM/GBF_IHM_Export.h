@@ -3,18 +3,23 @@
 
 #include <QWidget>
 #include <QDirModel>
+#include "ui_GBF_IHM_Export.h"
+#include "GBF_IHM.h"
+#include "QMessageBox"
 
 namespace Ui
 {
     class GBF_IHM_Export;
 }
 
+class GBF_IHM;
+
 class GBF_IHM_Export : public QWidget
 {
     Q_OBJECT
 
     public:
-        explicit GBF_IHM_Export(QWidget *parent = 0);
+        explicit GBF_IHM_Export(GBF_IHM *parent);
         ~GBF_IHM_Export();
 
     public slots:
@@ -22,6 +27,7 @@ class GBF_IHM_Export : public QWidget
 
     private:
         Ui::GBF_IHM_Export *ui;
+        GBF_IHM *m_GeneratorIHM;
         QDirModel *m_TreeView;
 };
 

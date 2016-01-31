@@ -141,7 +141,7 @@ void GBF_IHM::ShowExportIHM()
     if(m_Export_IHM != NULL)
         delete m_Export_IHM;
 
-    m_Export_IHM = new GBF_IHM_Export();
+    m_Export_IHM = new GBF_IHM_Export(this);
     m_Export_IHM->show();
 }
 
@@ -151,3 +151,9 @@ void GBF_IHM::ShowExportIHM()
       delete m_Generator;
       this->close();
   }
+
+
+ void GBF_IHM::Export(QString FileName, double Duration)
+ {
+    m_Generator->Export(Duration, FileName);
+ }
