@@ -16,6 +16,7 @@ void GBF_CosinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
     MaximumAmplitude = pow(2, Resolution)/2 -1;         // Définition de l'amplitude maximale en fonction de la résolution
     m_Waveform.clear();                                 // RAZ de l'attribut contenant la waveform
 
+    m_Waveform.resize(NbSamples);
      for(int i = 0; i < NbSamples; i++)                 // boucle de calcul de chaque echantillon
      { 
 
@@ -26,7 +27,7 @@ void GBF_CosinusWave::ComputeWaveform(int Resolution,int SamplingFrequency)
          else if(CurrentSample < MaximumAmplitude * -1)                     // Si saturation négative
              CurrentSample = MaximumAmplitude * -1;                         // Ecretage négatif
 
-         m_Waveform.push_back(CurrentSample);                               // Ajout de l'échantillon precedement calculé a la fin de la waveform
+         m_Waveform[i] = CurrentSample;                               // Ajout de l'échantillon precedement calculé a la fin de la waveform
 
      }
 }
