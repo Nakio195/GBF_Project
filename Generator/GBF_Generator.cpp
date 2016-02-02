@@ -203,12 +203,12 @@ void GBF_Generator::DisplaySignal()
 
     if(Waveform->size() != 0)
     {
-        NbSamples = Waveform->size();
+        NbSamples = Waveform->size()*2;
         SampleLength = Width / NbSamples;
 
         for(unsigned int i = 0; i < Waveform->size()*2; i++)
         {
-            int x = i*SampleLength/2;
+            int x = i*SampleLength;
             int y = (Waveform->at(CurrentSample)*-1*Height)/(2*MaximumAmplitude) + Height/2;
 
             m_Scene->addLine(x, y, x + SampleLength, y, Pen);
